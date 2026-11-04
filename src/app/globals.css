@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy-950: #070f22;
+  --color-navy-900: #0c1a36;
+  --color-navy-800: #132650;
+  --color-navy-700: #1d3366;
+  --color-navy-600: #2c4580;
+  --color-ivory: #fbf8f2;
+  --color-pearl: #f3eee4;
+  --color-gold-300: #ead9ac;
+  --color-gold-400: #d8bd7e;
+  --color-gold-500: #c2a15a;
+  --color-gold-600: #a4843f;
+  --color-gold-700: #7d6330;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-script: "Pinyon Script", cursive;
+  --font-sans: "Jost", system-ui, sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-navy-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gold-300);
+  color: var(--color-navy-900);
+}
+
+/* Metallic gold text */
+.text-gold-foil {
+  background: linear-gradient(105deg, #a4843f 0%, #ead9ac 28%, #c2a15a 50%, #f3e4bb 70%, #a4843f 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: foil 9s ease-in-out infinite alternate;
+}
+@keyframes foil {
+  to { background-position: 100% 0; }
+}
+
+.kicker {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Fine paper grain over large areas */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+.eq-bar { transform-origin: bottom; animation: eq 1s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .text-gold-foil, .eq-bar { animation: none; }
+}
+
+.lining { font-variant-numeric: lining-nums tabular-nums; }
